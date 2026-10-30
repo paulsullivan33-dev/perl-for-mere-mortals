@@ -1,0 +1,13 @@
+sku,item,warehouse,qty,unit_price
+SKU-1001,brass gear,north,140,2.50
+SKU-1002,steel axle,north,75,6.25
+SKU-1003,canvas belt,south,220,1.80
+SKU-1004,copper coil,north,48,9.60
+SKU-1005,oak handle,south,310,1.25
+SKU-1006,rubber gasket,north,960,0.35
+SKU-1007,iron hinge,south,185,2.10
+SKU-1008,glass lens,north,66,4.75
+SKU-1009,nylon pulley,south,428,0.90
+SKU-1010,tin funnel,north,132,1.60
+SKU-1011,leather strap,south,94,3.40
+SKU-1012,ceramic knob,north,257,1.15

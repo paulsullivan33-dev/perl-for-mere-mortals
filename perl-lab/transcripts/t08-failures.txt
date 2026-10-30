@@ -1,0 +1,27 @@
+$ cat > broken.pl <<EOF
+EOF
+
+$ cat broken.pl
+use strict;
+use warnings;
+my $count = 0;
+$coutn++;
+print "count is $count\n";
+
+$ perl -c broken.pl   (strict catches the typo at compile time)
+Global symbol "$coutn" requires explicit package name (did you forget to declare "my $coutn"?) at broken.pl line 4.
+broken.pl had compilation errors.
+exit code: 255
+
+$ perl -MNo::Such::Module -e 'print 1'   (a module that is not installed)
+Can't locate No/Such/Module.pm in @INC (you may need to install the No::Such::Module module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.38.2 /usr/local/share/perl/5.38.2 /usr/lib/x86_64-linux-gnu/perl5/5.38 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.38 /usr/share/perl/5.38 /usr/local/lib/site_perl).
+BEGIN failed--compilation aborted.
+exit code: 2
+
+$ perl -we 'my $x; print "value: $x\n"'   (warnings names the uninitialized value)
+Use of uninitialized value $x in concatenation (.) or string at -e line 1.
+value: 
+
+$ perl logreport.pl /nonexistent.log   (a file that is not there)
+Cannot open /nonexistent.log: No such file or directory
+exit code: 2

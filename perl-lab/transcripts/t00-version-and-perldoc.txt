@@ -1,0 +1,56 @@
+$ which perl
+/usr/bin/perl
+
+$ perl --version
+
+This is perl 5, version 38, subversion 2 (v5.38.2) built for x86_64-linux-gnu-thread-multi
+(with 67 registered patches, see perl -V for more detail)
+
+Copyright 1987-2023, Larry Wall
+
+Perl may be copied only under the terms of either the Artistic License or the
+GNU General Public License, which may be found in the Perl 5 source kit.
+
+Complete documentation for Perl, including FAQ lists, should be found on
+this system using "man perl" or "perldoc perl".  If you have access to the
+Internet, point your browser at https://www.perl.org/, the Perl Home Page.
+
+
+$ prove --version
+TAP::Harness v3.44 and Perl v5.38.2
+
+$ perldoc -f split   (the system perldoc is only a placeholder)
+You need to install the perl-doc package to use this program.
+exit code: 1
+
+(Debian splits the documentation into the perl-doc package.
+ The lab downloaded that .deb without installing it, unpacked
+ it with dpkg -x into perl-labwork/perldoc-root, and uses the
+ real perldoc from the unpack, with PERL5LIB pointing at its
+ pod directory. On a normal machine: sudo apt install perl-doc.)
+
+$ perldoc -f split | head -14   (look a function up)
+    split /PATTERN/,EXPR,LIMIT
+    split /PATTERN/,EXPR
+    split /PATTERN/
+    split   Splits the string EXPR into a list of strings and returns the
+            list in list context, or the size of the list in scalar context.
+            (Prior to Perl 5.11, it also overwrote @_ with the list in void
+            and scalar context. If you target old perls, beware.)
+
+            If only PATTERN is given, EXPR defaults to $_.
+
+            Anything in EXPR that matches PATTERN is taken to be a separator
+            that separates the EXPR into substrings (called "*fields*") that
+            do not include the separator. Note that a separator may be
+            longer than one character or even have no characters at all (the
+
+$ perldoc -q sort | head -8   (search the FAQ)
+Found in /home/hatch/workspace/perl-labwork/perldoc-root/usr/share/perl/5.38.2/pod/perlfaq4.pod
+  How do I sort an array by (anything)?
+    Supply a comparison function to sort() (described in "sort" in
+    perlfunc):
+
+        @list = sort { $a <=> $b } @list;
+
+    The default sort function is cmp, string comparison, which would sort

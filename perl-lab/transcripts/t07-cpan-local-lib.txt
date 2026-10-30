@@ -1,0 +1,23 @@
+$ curl -sL https://cpanmin.us -o ../cpanm && chmod +x ../cpanm   (the standalone installer)
+fetched: 303013 bytes
+
+$ ../cpanm -L ../local Text::CSV   (install into a local library, not the system)
+--> Working on Text::CSV
+Fetching http://www.cpan.org/authors/id/I/IS/ISHIGAKI/Text-CSV-2.06.tar.gz ... OK
+Configuring Text-CSV-2.06 ... OK
+Building and testing Text-CSV-2.06 ... OK
+Successfully installed Text-CSV-2.06
+1 distribution installed
+
+$ ls ../local/lib/perl5/Text/ | head
+CSV.pm
+CSV_PP.pm
+
+$ perl -I../local/lib/perl5 csv_pp.pl inventory.csv   (the CPAN module at work)
+Text::CSV_PP 2.06 parsed 12 rows
+  north    1678
+  south    1237
+
+$ awk -F, 'NR>1 {q[$3]+=$4} END {for (w in q) printf "%s %d\n", w, q[w]}' inventory.csv   (the same totals, independently)
+south 1237
+north 1678

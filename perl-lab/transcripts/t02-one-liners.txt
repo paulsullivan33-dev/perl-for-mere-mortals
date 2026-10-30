@@ -1,0 +1,42 @@
+$ perl -e 'print "Perl says hello\n"'
+Perl says hello
+
+$ perl -ne 'print if /level=ERROR/' weblog.log   (-n: loop over the file, print the error lines)
+2026-03-14T08:57:11Z host=web-01 level=ERROR method=POST path=/checkout status=500 ms=812 user=marta
+2026-03-14T08:59:36Z host=web-02 level=ERROR method=GET path=/api/status status=500 ms=204 user=anon
+2026-03-14T09:01:52Z host=web-01 level=ERROR method=POST path=/login status=500 ms=655 user=devon
+2026-03-14T09:03:27Z host=web-02 level=ERROR method=GET path=/cart status=500 ms=431 user=priya
+2026-03-14T09:05:49Z host=web-01 level=ERROR method=POST path=/checkout status=500 ms=903 user=kenji
+
+$ grep -c 'level=ERROR' weblog.log   (the same count, independently)
+5
+
+$ perl -ne '$c++ if /level=WARN/; END { print "$c warnings\n" }' weblog.log   (count with an END block)
+7 warnings
+
+$ perl -lane '$s{$F[5]}++; END { print "$_ $s{$_}" for sort keys %s }' weblog.log   (-a autosplit: count field 6, status=...)
+status=200 24
+status=301 2
+status=404 5
+status=500 5
+
+$ awk '{print $6}' weblog.log | sort | uniq -c   (the same, in awk)
+     24 status=200
+      2 status=301
+      5 status=404
+      5 status=500
+
+$ perl -pe 's/status=500/status=500 (server error)/' weblog.log | grep 'server error'   (-p: print every line, edited)
+2026-03-14T08:57:11Z host=web-01 level=ERROR method=POST path=/checkout status=500 (server error) ms=812 user=marta
+2026-03-14T08:59:36Z host=web-02 level=ERROR method=GET path=/api/status status=500 (server error) ms=204 user=anon
+2026-03-14T09:01:52Z host=web-01 level=ERROR method=POST path=/login status=500 (server error) ms=655 user=devon
+2026-03-14T09:03:27Z host=web-02 level=ERROR method=GET path=/cart status=500 (server error) ms=431 user=priya
+2026-03-14T09:05:49Z host=web-01 level=ERROR method=POST path=/checkout status=500 (server error) ms=903 user=kenji
+
+$ cp weblog.log demo-copy.log
+
+$ perl -i.bak -pe 's/user=anon/user=guest/' demo-copy.log   (-i: edit in place, keep a .bak)
+
+$ grep -c "user=guest" demo-copy.log; grep -c "user=anon" demo-copy.log.bak; rm demo-copy.log demo-copy.log.bak
+16
+16

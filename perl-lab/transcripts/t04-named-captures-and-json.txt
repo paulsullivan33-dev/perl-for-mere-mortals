@@ -1,0 +1,22 @@
+$ perl parse_demo.pl
+Matched. The named captures in %+:
+  host     web-01
+  level    ERROR
+  method   POST
+  ms       812
+  path     /checkout
+  status   500
+  ts       2026-03-14T08:57:11Z
+  user     marta
+As JSON:
+{
+   "host" : "web-01",
+   "level" : "ERROR",
+   "method" : "POST",
+   "ms" : "812",
+   "path" : "/checkout",
+   "status" : "500",
+   "ts" : "2026-03-14T08:57:11Z",
+   "user" : "marta"
+}
+The junk line matched nothing, as it should.

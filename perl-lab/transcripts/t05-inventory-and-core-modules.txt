@@ -1,0 +1,25 @@
+$ perl inventory.pl inventory.csv
+{
+   "file" : "inventory.csv",
+   "md5" : "d5209f33cf8fc480839d592099c92188",
+   "rows" : 12,
+   "total_qty" : 2915,
+   "total_value" : 4312.6,
+   "warehouses" : {
+      "north" : {
+         "qty" : 1678,
+         "value" : 2435.8
+      },
+      "south" : {
+         "qty" : 1237,
+         "value" : 1876.8
+      }
+   }
+}
+
+$ md5sum inventory.csv   (the checksum, independently)
+d5209f33cf8fc480839d592099c92188  inventory.csv
+
+$ awk -F, 'NR>1 {q[$3]+=$4; v[$3]+=$4*$5} END {for (w in q) printf "%s qty %d value %.2f\n", w, q[w], v[w]}' inventory.csv   (the totals, independently)
+south qty 1237 value 1876.80
+north qty 1678 value 2435.80

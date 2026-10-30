@@ -1,0 +1,15 @@
+$ prove -I. t/logparse.t
+t/logparse.t .. ok
+All tests successful.
+Files=1, Tests=19,  1 wallclock secs ( 0.02 usr  0.01 sys +  0.06 cusr  0.01 csys =  0.10 CPU)
+Result: PASS
+
+$ prove -I. -v t/logparse.t 2>&1 | tail -8   (the tail of the verbose run)
+ok 17 - fixture has 24 INFO lines
+ok 18 - fixture has 7 WARN lines
+ok 19 - fixture has 5 ERROR lines
+1..19
+ok
+All tests successful.
+Files=1, Tests=19,  0 wallclock secs ( 0.01 usr  0.01 sys +  0.06 cusr  0.01 csys =  0.09 CPU)
+Result: PASS

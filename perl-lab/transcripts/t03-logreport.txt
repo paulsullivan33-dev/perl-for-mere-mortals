@@ -1,0 +1,57 @@
+$ perl -c LogParse.pm; perl -c logreport.pl
+LogParse.pm syntax OK
+logreport.pl syntax OK
+
+$ perl logreport.pl weblog.log
+Log report for: weblog.log
+Lines read: 36
+Parsed:     36
+Unparsed:   0
+By level:
+  ERROR    5
+  INFO     24
+  WARN     7
+By status:
+  200      24
+  301      2
+  404      5
+  500      5
+Top 3 paths:
+  /index.html        6
+  /products          5
+  /api/status        4
+Average response time: 114.3 ms
+Server errors (status >= 500): 5
+
+$ perl logreport.pl --top 5 weblog.log | tail -9   (Getopt::Long option at work)
+  500      5
+Top 5 paths:
+  /index.html        6
+  /products          5
+  /api/status        4
+  /login             4
+  /cart              3
+Average response time: 114.3 ms
+Server errors (status >= 500): 5
+
+$ awk '{print $3}' weblog.log | sort | uniq -c   (independent check: levels)
+      5 level=ERROR
+     24 level=INFO
+      7 level=WARN
+
+$ awk '{gsub(/path=/,"",$5); print $5}' weblog.log | sort | uniq -c | sort -k1,1rn -k2,2   (independent check: every path)
+      6 /index.html
+      5 /products
+      4 /api/status
+      4 /login
+      3 /cart
+      3 /checkout
+      2 /about
+      2 /favicon.ico
+      1 /home
+      1 /images/banner.jpg
+      1 /images/logo.png
+      1 /old-catalogue
+      1 /products/gear
+      1 /search
+      1 /shop

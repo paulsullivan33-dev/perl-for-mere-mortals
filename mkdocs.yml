@@ -1,0 +1,29 @@
+site_name: Perl for Mere Mortals
+site_description: The classic glue language that still ships on almost every Unix machine. One-liners that take a log apart line by line, real scripts written under strict and warnings, named captures, core modules, tests run under prove, and one honest CPAN install, with the limits stated plainly.
+site_url: https://paulsullivan33-dev.github.io/perl-for-mere-mortals/
+copyright: 'Part of <a href="https://paulsullivan33-dev.github.io/mere-mortals/">For Mere Mortals</a> · Text CC BY 4.0, code MIT'
+
+# Guides live at the repo root (nice for GitHub browsing).
+# The deploy workflow copies them into docs/ before building.
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - What Perl Is: what-perl-is.md
+  - The Moving Parts: the-moving-parts.md
+  - Installing Perl: installing-perl.md
+  - First Checks: first-checks.md
+  - One-Liners — Perl in Your Pocket: one-liners.md
+  - Your First Script: your-first-script.md
+  - Variables, Context and $_: variables-and-context.md
+  - Regular Expressions in Perl: regular-expressions-in-perl.md
+  - Files, Text and JSON: files-text-and-json.md
+  - Modules and CPAN: modules-and-cpan.md
+  - Testing Your Perl: testing-your-perl.md
+  - Recipes: recipes.md
+  - The Neighbours: the-neighbours.md
+  - Limits: limits.md
+  - Troubleshooting: troubleshooting.md
+  - Glossary: glossary.md
+  - Writing Criteria: criteria.md

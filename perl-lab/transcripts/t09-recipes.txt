@@ -1,0 +1,20 @@
+$ perl -ne '$c++ if /method=POST/; END { print "$c posts\n" }' weblog.log   (recipe: count anything)
+7 posts
+
+$ grep -c 'method=POST' weblog.log   (independently)
+7
+
+$ perl -F, -lane 'next if $. == 1; $t += $F[3]; END { print "$t units" }' inventory.csv   (recipe: total a column)
+2915 units
+
+$ printf "gear\naxle\ngear\ncoil\naxle\n" > messy.txt; cat messy.txt
+gear
+axle
+gear
+coil
+axle
+
+$ perl -ne 'print unless $seen{$_}++' messy.txt   (recipe: deduplicate, keep order)
+gear
+axle
+coil
